@@ -1,7 +1,7 @@
 # Test JAVA - Boukadida Imen
 
 # Architecture 
-*Project Maven with SpringBoot & MongoDB
+* Project Maven with SpringBoot & MongoDB
 (see image users-webservice-spring-mongodb2/Architecture.jpg)
 
 # Steps
