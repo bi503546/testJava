@@ -1,18 +1,12 @@
 package user.manager.model;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
@@ -45,6 +39,53 @@ public class User {
 	
 	private long phone;
 	
+	/**
+	 * Constructor
+	 * @param _id
+	 * @param firstname
+	 * @param lastname
+	 * @param email
+	 * @param dateOfBirth
+	 * @param country
+	 * @param phone
+	 */
+	public User(String _id, @NotNull String firstname, @NotNull String lastname,
+			@Email @NotBlank(message = "the email field is mandatory") String email, LocalDate dateOfBirth,
+			@NotBlank(message = "the country field is mandatory") String country, long phone) {
+		super();
+		this._id = _id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.country = country;
+		this.phone = phone;
+	}
+	
+	
+	
+	/**
+	 * @param firstname
+	 * @param lastname
+	 * @param email
+	 * @param dateOfBirth
+	 * @param country
+	 * @param phone
+	 */
+	public User(@NotNull String firstname, @NotNull String lastname,
+			@Email @NotBlank(message = "the email field is mandatory") String email, LocalDate dateOfBirth,
+			@NotBlank(message = "the country field is mandatory") String country, long phone) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.country = country;
+		this.phone = phone;
+	}
+
+
+
 	public String getId() {
 		return _id;
 	}
@@ -87,13 +128,12 @@ public class User {
 	public void setPhone(long phone) {
 		this.phone = phone;
 	}
+	
 	@Override
 	public String toString() {
 		return "User [_id=" + _id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
 				+ ", dateOfBirth=" + dateOfBirth + ", country=" + country + ", phone=" + phone + "]";
 	}
-	
-	
 	
 	
 }
