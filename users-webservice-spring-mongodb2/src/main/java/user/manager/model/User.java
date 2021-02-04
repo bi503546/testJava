@@ -38,52 +38,15 @@ public class User {
 	private String country;
 	
 	private long phone;
-	
-	/**
-	 * Constructor
-	 * @param _id
-	 * @param firstname
-	 * @param lastname
-	 * @param email
-	 * @param dateOfBirth
-	 * @param country
-	 * @param phone
-	 */
-	public User(String _id, @NotNull String firstname, @NotNull String lastname,
-			@Email @NotBlank(message = "the email field is mandatory") String email, LocalDate dateOfBirth,
-			@NotBlank(message = "the country field is mandatory") String country, long phone) {
-		super();
-		this._id = _id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
-		this.country = country;
-		this.phone = phone;
+
+	public User(){
+
 	}
-	
-	
-	
-	/**
-	 * @param firstname
-	 * @param lastname
-	 * @param email
-	 * @param dateOfBirth
-	 * @param country
-	 * @param phone
-	 */
-	public User(@NotNull String firstname, @NotNull String lastname,
-			@Email @NotBlank(message = "the email field is mandatory") String email, LocalDate dateOfBirth,
-			@NotBlank(message = "the country field is mandatory") String country, long phone) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
-		this.country = country;
-		this.phone = phone;
+	public User(String fistname, String lastname, String email, LocalDate of, String france, int phone) {
 	}
 
+	public User(String id, String firstname, String lastname, String email, LocalDate of, String country, int phone) {
+	}
 
 
 	public String getId() {

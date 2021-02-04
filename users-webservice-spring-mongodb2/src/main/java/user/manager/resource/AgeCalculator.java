@@ -27,10 +27,10 @@ public class AgeCalculator {
 	 * @return calculated age
 	 * @throws ParseException to parse dateOfBirth
 	 */
-	public static int Age(LocalDate dateOfBirth) throws ParseException {
+	public static int age(LocalDate dateOfBirth) throws ParseException {
 	  
 		LOGGER.info("=================== inside Age Calculator ===================");
-		LOGGER.info("Date of birth "+ dateOfBirth.toString());
+		LOGGER.info("Date of birth "+ dateOfBirth);
 		LocalDate l = LocalDate.of(dateOfBirth.getYear(), dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth()); //specify year, month, date directly
 		LocalDate now = LocalDate.now(); //gets localDate
 		Period diff = Period.between(l, now); //difference between the dates is calculated

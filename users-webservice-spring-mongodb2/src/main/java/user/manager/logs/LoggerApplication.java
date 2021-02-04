@@ -1,4 +1,4 @@
-package api.logs;
+package user.manager.logs;
 
 
 import org.springframework.boot.SpringApplication;

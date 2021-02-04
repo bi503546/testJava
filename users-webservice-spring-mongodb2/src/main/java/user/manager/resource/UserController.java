@@ -8,22 +8,14 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import api.errorMessage.RestExceptionHandler;
-import api.errorMessage.UserServiceException;
 import user.manager.model.User;
 import user.manager.repository.UserRepository;
 
@@ -50,18 +42,18 @@ public class UserController {
 		LOGGER.info("===================inside registerUser ===================");
 		LOGGER.info("Enregistration with "+ user);
 		
-		int age = AgeCalculator.Age(user.getDateOfbirth());
+		int age = AgeCalculator.age(user.getDateOfbirth());
 		
 		if(age < 18 ) {
 			LOGGER.error("You must have 18 years old to register !");
-			throw new UserServiceException("You must have 18 years old to register !"); 
+			return new ResponseEntity<>("You must have 18 years old to register !", HttpStatus.NOT_ACCEPTABLE);
+
 		}
 		
-		if(!user.getCountry().equalsIgnoreCase("France")) {
+		else if(!user.getCountry().equalsIgnoreCase("France")) {
 			LOGGER.error("You must be in France to register !");
-			throw new	UserServiceException("You must be in France to register !"); 
+			return new ResponseEntity<>("You must be in France to register !", HttpStatus.NOT_ACCEPTABLE);
 		}
-		
 		else {
 			
 			LOGGER.info("Age valid ! "+ age);
@@ -79,16 +71,7 @@ public class UserController {
 	@GetMapping("/users")
 	public List<User> getUsers(){
 		LOGGER.info("=================== inside getUsers ===================");
-		if(userRepository.findAll() != null &&  userRepository.findAll().size() > 0) {
-			LOGGER.info("result = " + userRepository.findAll());
-			return userRepository.findAll();
-		}
-		else {
-			LOGGER.info("No user found ");
-			return null;
-		}
-
-		
+		return userRepository.findAll();
 	}
 	
 	/**
@@ -101,7 +84,7 @@ public class UserController {
 		
 		LOGGER.info("=================== inside getUser ===================");
 		
-		if(userRepository.findById(id)!= null  && !userRepository.findById(id).isEmpty()) {
+		if(userRepository.findById(id).isPresent()) {
 			LOGGER.info("User associated to id : "+ id + " : "+ userRepository.findById(id) );
 			return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
 		}
