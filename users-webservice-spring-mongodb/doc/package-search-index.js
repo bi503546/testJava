@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"api.errorMessage"},{"l":"api.logs"},{"l":"user.manager.model"},{"l":"user.manager.repository"},{"l":"user.manager.resource"}]

@@ -1,0 +1,6 @@
+api.errorMessage
+api.logs
+user.manager
+user.manager.model
+user.manager.repository
+user.manager.resource

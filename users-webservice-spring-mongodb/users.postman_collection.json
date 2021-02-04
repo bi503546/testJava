@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "a948e8be-4034-4547-b662-f06a674e3e9d",
+		"name": "users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5556/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"imen\",\r\n    \"lastname\": \"Boukadida\",\r\n    \"email\": \"imenbbbb@hotmail.fr\",\r\n    \"dateOfbirth\": \"2002-02-18\",\r\n    \"country\":\"TUNe\",\r\n    \"phone\": 111111\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5557/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5557",
+					"path": [
+						"user"
+					]
+				},
+				"description": "add new User to db"
+			},
+			"response": []
+		},
+		{
+			"name": "get one User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Displays the user associated to the mentioned id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5557/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5557/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5557",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Displays all users registred in our database."
+			},
+			"response": []
+		}
+	]
+}
