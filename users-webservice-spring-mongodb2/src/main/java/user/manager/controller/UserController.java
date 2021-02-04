@@ -1,4 +1,4 @@
-package user.manager.resource;
+package user.manager.controller;
 
 import java.text.ParseException;
 import java.util.List;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import user.manager.model.User;
+import user.manager.service.Validator;
 import user.manager.repository.UserRepository;
 
 /**
@@ -27,7 +28,9 @@ import user.manager.repository.UserRepository;
 public class UserController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-	
+	private static final String ERROR_OF_AGE = "You must have 18 years old to register !";
+	private static final String ERROR_OF_COUNTRY = "You must be in France to register !";
+
 	@Autowired
 	UserRepository userRepository;
 
@@ -42,17 +45,17 @@ public class UserController {
 		LOGGER.info("===================inside registerUser ===================");
 		LOGGER.info("Enregistration with "+ user);
 		
-		int age = AgeCalculator.age(user.getDateOfbirth());
+		int age = Validator.age(user.getDateOfbirth());
 		
 		if(age < 18 ) {
-			LOGGER.error("You must have 18 years old to register !");
-			return new ResponseEntity<>("You must have 18 years old to register !", HttpStatus.NOT_ACCEPTABLE);
+			LOGGER.error(ERROR_OF_AGE);
+			return new ResponseEntity<>(ERROR_OF_AGE, HttpStatus.NOT_ACCEPTABLE);
 
 		}
 		
 		else if(!user.getCountry().equalsIgnoreCase("France")) {
-			LOGGER.error("You must be in France to register !");
-			return new ResponseEntity<>("You must be in France to register !", HttpStatus.NOT_ACCEPTABLE);
+			LOGGER.error(ERROR_OF_COUNTRY);
+			return new ResponseEntity<>(ERROR_OF_COUNTRY, HttpStatus.NOT_ACCEPTABLE);
 		}
 		else {
 			

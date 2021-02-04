@@ -1,11 +1,8 @@
-package user.manager.resource;
+package user.manager.service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Calendar;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -15,11 +12,11 @@ import org.slf4j.LoggerFactory;
  * @author imenb
  *
  */
-public class AgeCalculator {
+public class Validator {
 
 	private Date dateOfBirth;
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Validator.class);
 	
 
 	/**
